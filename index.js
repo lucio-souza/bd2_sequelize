@@ -57,3 +57,24 @@ async function listarUsuarios(){
 }
 
 listarUsuarios();
+
+async function buscarUsuario(email){
+  const usuario=await Usuario.findByPk(email);
+  console.log(JSON.stringify(usuario));
+}
+buscarUsuario("lucio@gmail.com")
+
+async function atualizarUsuario(email,nome){
+  const usuario =await Usuario.findByPk(email);
+  usuario.nome=nome;
+  console.log("usuario alterado com sucesso");
+}
+atualizarUsuario("lucio@gmail.com","paulo");
+
+async function deletarUsuario(email){
+  const usuario=await Usuario.findByPk(email)
+  await usuario.destroy();
+  console.log("Usuario deletado com sucesso");
+}
+
+deletarUsuario("lucio@gmail.com")
