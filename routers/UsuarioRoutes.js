@@ -8,6 +8,6 @@ router.get('/',listarUsuarios);
 router.get('/:email',findByemail);
 router.post('/',createUsuario)
 router.delete('/',deleteUsuario)
-router.put('/',atualizarUsuario)
+router.patch('/',atualizarUsuario)
 
 module.exports=router;

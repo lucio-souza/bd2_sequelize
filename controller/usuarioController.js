@@ -29,11 +29,11 @@ const deleteUsuario=async (req,res)=>{
 }
 
 const atualizarUsuario=async (req,res)=>{
-    const usuario=Usuario.findByPk(req.body);
+    const usuario=await Usuario.findByPk(req.body.email);
     usuario.nome=req.body.nome;
-    usuario.nascimento=req.body.nascimento;
     await usuario.save()
     res.status(200).send("usuario atualizado com sucesso");
+
 }
 
 module.exports={listarUsuarios,findByemail,createUsuario,deleteUsuario,atualizarUsuario};
