@@ -12,14 +12,23 @@ const findByemail=async (req,res)=>{
 
 const createUsuario=async (req,res)=>{
     try{
-    await Usuario.create(req.body)
-    res.status(201).send("usuario criado com sucesso")
+        await Usuario.create(req.body)
+        res.status(201).send("usuario criado com sucesso")
     }catch(error){
         res.status(400).send(`erro:${error}`)
     }
 }
+const deleteUsuario=async (req,res)=>{
+    try{
+        const usuario=await Usuario.findByPk(req.body.email)
+        await usuario.destroy(usuario)
+        res.status(200).send("usuario deletado com sucesso")
+    }catch(error){
+        res.status(400).send("error")
+    }
+}
 
-module.exports={listarUsuarios,findByemail,createUsuario};
+module.exports={listarUsuarios,findByemail,createUsuario,deleteUsuario};
 //  //funcao usada para criar um usuario
 //  async function criarUsuario(usuario){
 //    await Usuario.create(usuario);
