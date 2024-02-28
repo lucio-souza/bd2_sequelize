@@ -19,7 +19,7 @@ const Usuario = sequelize.define('Usuario', {
     // Other model options go here
   });
   console.log(Usuario === sequelize.models.Usuario); // true
-  //funcao usada para sincronizar como banco
+  //funcao usada para sincronizar com o banco
   async function sincronizar(){
     await Usuario.sync();
     console.log("usuario sincronizado");
