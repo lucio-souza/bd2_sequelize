@@ -28,7 +28,15 @@ const deleteUsuario=async (req,res)=>{
     }
 }
 
-module.exports={listarUsuarios,findByemail,createUsuario,deleteUsuario};
+const atualizarUsuario=async (req,res)=>{
+    const usuario=Usuario.findByPk(req.body);
+    usuario.nome=req.body.nome;
+    usuario.nascimento=req.body.nascimento;
+    await usuario.save()
+    res.status(200).send("usuario atualizado com sucesso");
+}
+
+module.exports={listarUsuarios,findByemail,createUsuario,deleteUsuario,atualizarUsuario};
 //  //funcao usada para criar um usuario
 //  async function criarUsuario(usuario){
 //    await Usuario.create(usuario);
