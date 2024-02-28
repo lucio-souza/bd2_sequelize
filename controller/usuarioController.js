@@ -10,7 +10,16 @@ const findByemail=async (req,res)=>{
     res.json(usuario);
 }
 
-module.exports={listarUsuarios,findByemail};
+const createUsuario=async (req,res)=>{
+    try{
+    await Usuario.create(req.body)
+    res.status(201).send("usuario criado com sucesso")
+    }catch(error){
+        res.status(400).send(`erro:${error}`)
+    }
+}
+
+module.exports={listarUsuarios,findByemail,createUsuario};
 //  //funcao usada para criar um usuario
 //  async function criarUsuario(usuario){
 //    await Usuario.create(usuario);
