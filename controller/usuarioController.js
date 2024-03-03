@@ -20,7 +20,7 @@ const createUsuario=async (req,res)=>{
 }
 const deleteUsuario=async (req,res)=>{
     try{
-        const usuario=await Usuario.findByPk(req.body.email)
+        const usuario=await Usuario.findByPk(req.params.email)
         await usuario.destroy(usuario)
         res.status(200).send("usuario deletado com sucesso")
     }catch(error){
@@ -29,40 +29,15 @@ const deleteUsuario=async (req,res)=>{
 }
 
 const atualizarUsuario=async (req,res)=>{
-    const usuario=await Usuario.findByPk(req.body.email);
+    try{
+    const usuario=await Usuario.findByPk(req.params.email);
     usuario.nome=req.body.nome;
+    usuario.nascimento=req.body.nascimento?req.body.nascimento:usuario.nascimento;
     await usuario.save()
     res.status(200).send("usuario atualizado com sucesso");
-
+    }catch(erro){
+        res.status(400).send("erro")
+    }
 }
 
 module.exports={listarUsuarios,findByemail,createUsuario,deleteUsuario,atualizarUsuario};
-//  //funcao usada para criar um usuario
-//  async function criarUsuario(usuario){
-//    await Usuario.create(usuario);
-//    console.log("usuario criado");
-//  }
-//  
-//  //criarUsuario({
-//  //  nome:"lucio",
-//  //  email:"lucio@gmail.com",
-//  //  nascimento:"2003-11-22"
-//  //})
-//
-//  //funcao para listar as tabelas
-//async function listarUsuarios(email){
-//  const usuarios =await Usuario.findAll();
-//  console.log(JSON.stringify(usuarios));
-//}
-//
-//listarUsuarios();
-//
-//async function buscarUsuario(email){
-//  const usuario=await Usuario.findPk(email);
-//  console.log(JSON.stringify(usuarios));
-//}
-//buscarUsuario("lucio@gmail.com")
-//
-////async function atualizarUsuario(email,nome){
-////  const usaurio =await Usuario.findPk(email)
-////}

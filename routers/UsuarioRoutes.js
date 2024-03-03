@@ -7,7 +7,7 @@ require('../controller/usuarioController');
 router.get('/',listarUsuarios);
 router.get('/:email',findByemail);
 router.post('/',createUsuario)
-router.delete('/',deleteUsuario)
-router.patch('/',atualizarUsuario)
+router.delete('/:email',deleteUsuario)
+router.patch('/:email',atualizarUsuario)
 
 module.exports=router;
